@@ -115,18 +115,22 @@ const Tree = function(arr){
         return root;
     }
 
-
+    //function to insert a value at a leaf node
     const insert = function(val,rt=root){
         if(rt.left ==null || rt.right==null){
-            
+            //if a node with free space is found
+
+
+            //insert left
             if(rt.left == null && val<rt.value){
                 rt.left = node(val);
             }
-
+            //insert rigth
             else if(rt.right==null && val>rt.value){
                 rt.right = node(val);
             }
 
+            //go to child node if above conditions not satisfied
             else if(rt.left !=null){
                 insert(val,rt.left);
             }
@@ -138,7 +142,8 @@ const Tree = function(arr){
             
             return;
         }
-
+        //if the given node(root first) is not a leaf node, then the tree is traversed recursively based on value of current node
+        //left if less, right if more
         else{
             if(val<rt.value){
                 insert(val,rt.left)
