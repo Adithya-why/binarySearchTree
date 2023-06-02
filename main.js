@@ -104,8 +104,59 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 //contains tree functions
 const Tree = function(arr){
-    let root = buildTree(arr);
+    let root = buildTree(arr,0,arr.length-1);
+    
+    const display = function(){
+        console.log(root);
+        prettyPrint(root);
+    }
 
+    const getRoot = function(){
+        return root;
+    }
+
+
+    const insert = function(val,rt=root){
+        if(rt.left ==null || rt.right==null){
+            
+            if(rt.left == null && val<rt.value){
+                rt.left = node(val);
+            }
+
+            else if(rt.right==null && val>rt.value){
+                rt.right = node(val);
+            }
+
+            else if(rt.left !=null){
+                insert(val,rt.left);
+            }
+
+            else if(rt.right!=null){
+                insert(val,rt.right);
+            }
+
+            
+            return;
+        }
+
+        else{
+            if(val<rt.value){
+                insert(val,rt.left)
+            }
+
+            else{
+                insert(val,rt.right);
+            }
+        }
+    }
+
+
+
+
+
+
+
+    return{display,insert}
 }
 
 
@@ -113,6 +164,10 @@ let arr = [2,5,1,3,7,9,6,8];
 let a = mergeSort(arr);
 
 
+t = Tree(a);
+t.display();
+t.insert(1.5);
+t.display();
 
 
 
