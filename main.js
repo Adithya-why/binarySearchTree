@@ -104,6 +104,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 //contains tree functions
 const Tree = function(arr){
+    //used buildtree to obtain an BST in the form of an object
     let root = buildTree(arr,0,arr.length-1);
     
     const display = function(){
@@ -118,7 +119,7 @@ const Tree = function(arr){
     //function to insert a value at a leaf node
     const insert = function(val,rt=root){
         if(rt.left ==null || rt.right==null){
-            //if a node with free space is found
+            //if a node with free space is found(lesf or semi leaf)
 
 
             //insert left
@@ -156,12 +157,63 @@ const Tree = function(arr){
     }
 
 
+    const deleteKey = function(key){
+        root = deleteRec(root,key);
+    }
+
+
+    const deleteRec = function(root,key){
+        if(root==null){
+            return root;
+        }
+
+        if(key<root.value){
+            root.left = deleteRec(root.left,key);
+        }
+
+        else if(key>root.value){
+            root.right = deleteRec(root.right,key);
+        }
+
+
+
+
+        else{
+            if(root.left==null){
+                return root.right;
+            }
+
+            else if(root.right==null){
+                return root.left;
+            }
+
+
+            root.value = minVal(root.right);
+            root.right = deleteRec(root.right,root.value);
+        }
+
+        return root;
+    }
+
+
+
+
+    const minVal = function(root){
+        let min = root.value;
+        while(root.left != null){
+           min = root.left.value;
+           root = root.left;
+        }
+
+
+        return min;
+    }
 
 
 
 
 
-    return{display,insert}
+    return{display,insert,deleteKey}
 }
 
 
@@ -171,7 +223,7 @@ let a = mergeSort(arr);
 
 t = Tree(a);
 t.display();
-t.insert(1.5);
+t.deleteKey(5);
 t.display();
 
 
