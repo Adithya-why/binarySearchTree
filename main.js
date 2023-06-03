@@ -156,29 +156,39 @@ const Tree = function(arr){
         }
     }
 
-
+    //function to delete a node and save the updated version to root
     const deleteKey = function(key){
         root = deleteRec(root,key);
     }
 
-
+    //function to remove a node recursively
     const deleteRec = function(root,key){
+
+        //base case, if root is null, then root is returned
         if(root==null){
             return root;
         }
 
+        
+        //if given key is less than root,left subtree is searched
+        //it is assigned to root.left so that the updated version is stored
+        //recusively continues until finds the correct node
         if(key<root.value){
             root.left = deleteRec(root.left,key);
         }
-
+        //if given key is more than root,right subtree is searched
         else if(key>root.value){
             root.right = deleteRec(root.right,key);
         }
 
 
 
-
+        //if node with the key is found
         else{
+
+
+            //if node only has one child(or no child), then easily removed
+            //the deleted node is replace with its child(might be null if no child)
             if(root.left==null){
                 return root.right;
             }
@@ -187,11 +197,16 @@ const Tree = function(arr){
                 return root.left;
             }
 
+            //if two children present
+            //then the inorder minval is found
+            //minval is the value in the rigth subtree which is just a little more than deleted node
 
             root.value = minVal(root.right);
+            //the deleted node is replaced with the minval
+            //the original minval node is deleted from the rigth subtree
             root.right = deleteRec(root.right,root.value);
         }
-
+        //the node is returned
         return root;
     }
 
@@ -199,13 +214,17 @@ const Tree = function(arr){
 
 
     const minVal = function(root){
+
+        //assumes root is the smallest value
         let min = root.value;
         while(root.left != null){
+
+            //searches left subtree if it exists and moves to the inner left subtree
            min = root.left.value;
            root = root.left;
         }
 
-
+        //returns the lowest value in the given subtree
         return min;
     }
 
