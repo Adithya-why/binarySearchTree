@@ -425,7 +425,7 @@ const Tree = function(arr){
     const rebalance = function(){
         let arr = [];
         inordert(root,arr);
-        return buildTree(arr,0,arr.length-1);
+        root = buildTree(arr,0,arr.length-1);
     }
 
 
@@ -441,12 +441,20 @@ let a = mergeSort(arr);
 
 t = Tree(a);
 t.display();
-t.insert(75);
 t.isBalanced();
+t.preOrder();
+t.inOrder();
+t.postOrder();
+t.insert(75);
+t.insert(89);
 t.display();
-console.log("______________________");
-console.log(prettyPrint(t.rebalance()));
-
+t.isBalanced();
+t.rebalance();
+t.isBalanced();
+t.preOrder();
+t.inOrder();
+t.postOrder();
+t.display();
 
 
 
