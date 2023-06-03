@@ -288,12 +288,14 @@ const Tree = function(arr){
         }
     }
 
-
+    //depth fist traversal
     const preOrder = function(rt=root){
+        //base case,beyond leaf nodes
         if(rt==null){
             return;
         }
-
+        //preorder
+        //root,left,right
         console.log(rt);
         preOrder(rt.left);
         preOrder(rt.right);
@@ -304,7 +306,8 @@ const Tree = function(arr){
         if(rt==null){
             return;
         }
-
+        //inorder
+        //left,root,right
         inOrder(rt.left);
         console.log(rt);
         inOrder(rt.right);
@@ -316,7 +319,8 @@ const Tree = function(arr){
         if(rt==null){
             return;
         }
-
+        //postorder
+        //left,right,root
         postOrder(rt.left);
         postOrder(rt.right);
         console.log(rt);
