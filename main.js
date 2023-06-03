@@ -327,12 +327,44 @@ const Tree = function(arr){
     }
 
 
+    const height = function(node=find(1),hl = [],h=0){
+        if(node==null){
+            return;
+        }
+        //base case
+
+
+        //chekcs if leaf node
+        if(node.left == null && node.right == null){
+            console.log(h);
+
+            //if leaf node push the h value to the list of heights
+            hl.push(h);
+            return;
+        }
+
+        else{
+
+            //if not leaf, increment height and check the subtrees
+
+            h++;
+            height(node.left,hl,h);
+            height(node.right,hl,h);
+        }
+
+        //the list contains the length of all the possible paths of node to leaf, the highest is obtained and is the height of the node
+        
+        console.log(hl.reduce((a,b)=>Math.max(a,b),-Infinity));
+        return hl.reduce((a,b)=>Math.max(a,b),-Infinity);
+    }
 
 
 
 
 
-    return{display,insert,deleteKey,find,levelOrder,preOrder,inOrder,postOrder}
+
+
+    return{display,insert,deleteKey,find,levelOrder,preOrder,inOrder,postOrder,height}
 }
 
 
@@ -342,7 +374,9 @@ let a = mergeSort(arr);
 
 t = Tree(a);
 t.display();
-t.postOrder();
+let x = t.height();
+console.log("The height is " + x);
+t.display();
 
 
 
