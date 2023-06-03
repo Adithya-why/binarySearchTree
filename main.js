@@ -358,13 +358,42 @@ const Tree = function(arr){
         return hl.reduce((a,b)=>Math.max(a,b),-Infinity);
     }
 
+    const depth = function(node=find(9),rt = root,d=0){
+        if(root==null){
+            return;
+        }
+
+        //base case
+
+        //checks if the current node is the given node
+        if(node.value == rt.value){
+            console.log(d);
+            return;
+        }
+
+        //if its not the given node
+
+
+        else{
+
+            //the depth is ++
+            //the tree is traversed left or igth based on value given and current node value
+            d++;
+            if(node.value<rt.value){
+                depth(node,rt.left,d)
+            }
+
+            else{
+                depth(node,rt.right,d);
+            }
+        }
+    }
 
 
 
 
 
-
-    return{display,insert,deleteKey,find,levelOrder,preOrder,inOrder,postOrder,height}
+    return{display,insert,deleteKey,find,levelOrder,preOrder,inOrder,postOrder,height,depth}
 }
 
 
@@ -374,8 +403,7 @@ let a = mergeSort(arr);
 
 t = Tree(a);
 t.display();
-let x = t.height();
-console.log("The height is " + x);
+t.depth();
 t.display();
 
 
