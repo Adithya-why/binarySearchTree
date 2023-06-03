@@ -229,10 +229,37 @@ const Tree = function(arr){
     }
 
 
+    const find = function(val,rt=root){
+
+        //base cas
+        //checks if the correct node is obtained
+        if(rt.value == val){
+            console.log(rt);
+            console.log("found");
+            return rt;
+        }
+
+
+        //traverses the tree if node is not correct
+        else{
+            if(val<rt.value){
+                return find(val,rt.left);
+            }
+
+            else{
+                return find(val,rt.right);
+            }
+        }
+    }
 
 
 
-    return{display,insert,deleteKey}
+
+
+
+
+
+    return{display,insert,deleteKey,find}
 }
 
 
@@ -242,8 +269,8 @@ let a = mergeSort(arr);
 
 t = Tree(a);
 t.display();
-t.deleteKey(5);
-t.display();
+
+console.log(t.find(7));
 
 
 
