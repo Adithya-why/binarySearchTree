@@ -253,13 +253,49 @@ const Tree = function(arr){
     }
 
 
+    //used for breadth first traversal or levelorder travsersal
+    const levelOrder = function(){
+
+        //maintains a queue
+        let q = [];
+
+        //root is pushed to queue
+        q.push(root);
+
+
+        //while queue not empty
+        while(q.length != 0){
+
+            //if not empty
+            //fist element is read adn processed
+            let cur = q[0];
+            console.log(cur);
+            console.log(cur.value);
+
+            //Its children are pushed to the queue
+            if(cur.left!=null){
+                q.push(cur.left);
+            }
+
+            if(cur.right!=null){
+                q.push(cur.right);
+            }
+
+
+            //the element read already is removed
+
+            q.shift();
+        }
+    }
 
 
 
 
 
 
-    return{display,insert,deleteKey,find}
+
+
+    return{display,insert,deleteKey,find,levelOrder}
 }
 
 
@@ -269,8 +305,7 @@ let a = mergeSort(arr);
 
 t = Tree(a);
 t.display();
-
-console.log(t.find(7));
+t.levelOrder();
 
 
 
