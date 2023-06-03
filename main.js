@@ -289,13 +289,46 @@ const Tree = function(arr){
     }
 
 
+    const preOrder = function(rt=root){
+        if(rt==null){
+            return;
+        }
+
+        console.log(rt);
+        preOrder(rt.left);
+        preOrder(rt.right);
+    }
+
+
+    const inOrder = function(rt=root){
+        if(rt==null){
+            return;
+        }
+
+        inOrder(rt.left);
+        console.log(rt);
+        inOrder(rt.right);
+    }
+
+
+
+    const postOrder = function(rt=root){
+        if(rt==null){
+            return;
+        }
+
+        postOrder(rt.left);
+        postOrder(rt.right);
+        console.log(rt);
+    }
 
 
 
 
 
 
-    return{display,insert,deleteKey,find,levelOrder}
+
+    return{display,insert,deleteKey,find,levelOrder,preOrder,inOrder,postOrder}
 }
 
 
@@ -305,7 +338,7 @@ let a = mergeSort(arr);
 
 t = Tree(a);
 t.display();
-t.levelOrder();
+t.postOrder();
 
 
 
