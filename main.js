@@ -405,10 +405,33 @@ const Tree = function(arr){
         }
     }
 
+    //function reads tree inorder and stores in an array
+    const inordert = function(node,arr){
+        if(node==null){
+            return;
+        }
+
+        else{
+            inordert(node.left,arr);
+            arr.push(node.value);
+            inordert(node.right,arr);
+        }
+
+        
+
+    }
+
+    //creates a new tree from rebalanced array;
+    const rebalance = function(){
+        let arr = [];
+        inordert(root,arr);
+        return buildTree(arr,0,arr.length-1);
+    }
 
 
 
-    return{display,insert,deleteKey,find,levelOrder,preOrder,inOrder,postOrder,height,depth,isBalanced}
+
+    return{display,insert,deleteKey,find,levelOrder,preOrder,inOrder,postOrder,height,depth,isBalanced,rebalance}
 }
 
 
@@ -418,9 +441,12 @@ let a = mergeSort(arr);
 
 t = Tree(a);
 t.display();
+t.insert(75);
 t.isBalanced();
-
 t.display();
+console.log("______________________");
+console.log(prettyPrint(t.rebalance()));
+
 
 
 
