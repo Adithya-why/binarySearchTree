@@ -377,7 +377,7 @@ const Tree = function(arr){
         else{
 
             //the depth is ++
-            //the tree is traversed left or igth based on value given and current node value
+            //the tree is traversed left or rigth based on value given and current node value
             d++;
             if(node.value<rt.value){
                 depth(node,rt.left,d)
@@ -391,9 +391,24 @@ const Tree = function(arr){
 
 
 
+    const isBalanced = function(){
+        let hl,hr;
+        hl = height(root.left);
+        hr = height(root.right);
+        console.log(hl,hr);
+        if(hl-hr == 0 || hl-hr ==1 || hr-hl==0 || hr-hl ==1){
+            console.log("TRee balanced");
+        }
+
+        else{
+            console.log("Tree not balanced");
+        }
+    }
 
 
-    return{display,insert,deleteKey,find,levelOrder,preOrder,inOrder,postOrder,height,depth}
+
+
+    return{display,insert,deleteKey,find,levelOrder,preOrder,inOrder,postOrder,height,depth,isBalanced}
 }
 
 
@@ -403,7 +418,8 @@ let a = mergeSort(arr);
 
 t = Tree(a);
 t.display();
-t.depth();
+t.isBalanced();
+
 t.display();
 
 
